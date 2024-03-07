@@ -48,10 +48,7 @@ jobs:
       - name: Create Namespace
         run: kubectl create ns prometheus
 
-      - name: change to namespace
-        run: kubens prometheus
-
       - name: Deploy Prometheus
         run: |
            helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-           helm install my-prometheus prometheus-community/prometheus --version 25.16.0
+           helm install my-prometheus prometheus-community/prometheus --version 25.16.0 -n prometheus
