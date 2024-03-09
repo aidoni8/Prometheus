@@ -1,25 +1,15 @@
 service:
-    ## If false, no Service will be created for the Prometheus server
-    ##
-    enabled: true
-
-    annotations: {}
-    labels: {}
-    clusterIP: ""
-
-    ## List of IP addresses at which the Prometheus server service is available
-    ## Ref: https://kubernetes.io/docs/concepts/services-networking/service/#external-ips
-    ##
-    externalIPs: []
-
-    loadBalancerIP: ""
-    loadBalancerSourceRanges: []
-    servicePort: 80
-    sessionAffinity: None
-    type: LoadBalancer
-
-    ## Enable gRPC port on service to allow auto discovery with thanos-querier
-    gRPC:
-      enabled: false
-      servicePort: 10901
-      # nodePort: 10901
+  enabled: true
+  type: LoadBalancer
+  loadBalancerIP: ""
+  loadBalancerClass: ""
+  loadBalancerSourceRanges: []
+  port: 80
+  targetPort: 3000
+    # targetPort: 4181 To be used with a proxy extraContainer
+  ## Service annotations. Can be templated.
+  annotations: {}
+  labels: {}
+  portName: service
+  # Adds the appProtocol field to the service. This allows to work with istio protocol selection. Ex: "http" or "tcp"
+  appProtocol: ""
